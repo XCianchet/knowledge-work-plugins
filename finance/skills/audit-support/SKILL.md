@@ -1,374 +1,330 @@
 ---
 name: audit-support
-description: Support SOX 404 compliance with control testing methodology, sample selection, and documentation standards. Use when generating testing workpapers, selecting audit samples, classifying control deficiencies, or preparing for internal or external audits.
+description: Soporta el proceso de auditoria externa e interna conforme a las normas de auditoria argentinas (RT 37 FACPCE, NAA del CPCE, normas CNV para entes cotizantes). Incluye metodologia de pruebas de control, seleccion de muestras, estandares de documentacion y evaluacion de deficiencias. Reemplaza el enfoque SOX 404 por el marco de control interno argentino.
 user-invocable: false
 ---
 
-# Audit Support
-
-**Important**: This skill assists with SOX compliance workflows but does not provide audit or legal advice. All testing workpapers and assessments should be reviewed by qualified financial professionals. While "significance" and "materiality" are context-specific concepts that are ultimately assessed by auditors, this skill is intended to assist professionals in the creation and evaluation of effective internal controls and documentation for audits.
-
-SOX 404 control testing methodology, sample selection approaches, testing documentation standards, control deficiency classification, and common control types.
-
-## SOX 404 Control Testing Methodology
-
-### Overview
-
-SOX Section 404 requires management to assess the effectiveness of internal controls over financial reporting (ICFR). This involves:
-
-1. **Scoping:** Identify significant accounts and relevant assertions
-2. **Risk assessment:** Evaluate the risk of material misstatement for each significant account
-3. **Control identification:** Document the controls that address each risk
-4. **Testing:** Test the design and operating effectiveness of key controls
-5. **Evaluation:** Assess whether any deficiencies exist and their severity
-6. **Reporting:** Document the assessment and any material weaknesses
-
-### Scoping Significant Accounts
-
-An account is significant if there is more than a remote likelihood that it could contain a misstatement that is material (individually or in aggregate).
-
-**Quantitative factors:**
-- Account balance exceeds materiality threshold (typically 3-5% of a key benchmark)
-- Transaction volume is high, increasing the risk of error
-- Account is subject to significant estimates or judgment
-
-**Qualitative factors:**
-- Account involves complex accounting (revenue recognition, derivatives, pensions)
-- Account is susceptible to fraud (cash, revenue, related-party transactions)
-- Account has had prior misstatements or audit adjustments
-- Account involves significant management judgment or estimates
-- New account or significantly changed process
-
-### Relevant Assertions by Account Type
-
-| Account Type | Key Assertions |
-|-------------|---------------|
-| Revenue | Occurrence, Completeness, Accuracy, Cut-off |
-| Accounts Receivable | Existence, Valuation (allowance), Rights |
-| Inventory | Existence, Valuation, Completeness |
-| Fixed Assets | Existence, Valuation, Completeness, Rights |
-| Accounts Payable | Completeness, Accuracy, Existence |
-| Accrued Liabilities | Completeness, Valuation, Accuracy |
-| Equity | Completeness, Accuracy, Presentation |
-| Financial Close/Reporting | Presentation, Accuracy, Completeness |
-
-### Design Effectiveness vs Operating Effectiveness
-
-**Design effectiveness:** Is the control properly designed to prevent or detect a material misstatement in the relevant assertion?
-- Evaluated through walkthroughs (trace a transaction end-to-end through the process)
-- Confirm the control is placed at the right point in the process
-- Confirm the control addresses the identified risk
-- Performed at least annually, or when processes change
-
-**Operating effectiveness:** Did the control actually operate as designed throughout the testing period?
-- Evaluated through testing (inspection, observation, re-performance, inquiry)
-- Requires sufficient sample sizes to support a conclusion
-- Must cover the full period of reliance
-
-## Sample Selection Approaches
-
-### Random Selection
-
-**When to use:** Default method for transaction-level controls with large populations.
-
-**Method:**
-1. Define the population (all transactions subject to the control during the period)
-2. Number each item in the population sequentially
-3. Use a random number generator to select sample items
-4. Ensure no bias in selection (all items have equal probability)
-
-**Advantages:** Statistically valid, defensible, no selection bias
-**Disadvantages:** May miss high-risk items, requires complete population listing
-
-### Targeted (Judgmental) Selection
-
-**When to use:** Supplement to random selection for risk-based testing; primary method when population is small or highly varied.
-
-**Method:**
-1. Identify items with specific risk characteristics:
-   - High dollar amount (above a defined threshold)
-   - Unusual or non-standard transactions
-   - Period-end transactions (cut-off risk)
-   - Related-party transactions
-   - Manual or override transactions
-   - New vendor/customer transactions
-2. Select items matching risk criteria
-3. Document rationale for each targeted selection
-
-**Advantages:** Focuses on highest-risk items, efficient use of testing effort
-**Disadvantages:** Not statistically representative, may over-represent certain risks
-
-### Haphazard Selection
-
-**When to use:** When random selection is impractical (no sequential population listing) and population is relatively homogeneous.
-
-**Method:**
-1. Select items without any specific pattern or bias
-2. Ensure selections are spread across the full population period
-3. Avoid unconscious bias (don't always pick items at the top, round numbers, etc.)
-
-**Advantages:** Simple, no technology required
-**Disadvantages:** Not statistically valid, susceptible to unconscious bias
-
-### Systematic Selection
-
-**When to use:** When population is sequential and you want even coverage across the period.
-
-**Method:**
-1. Calculate the sampling interval: Population size / Sample size
-2. Select a random starting point within the first interval
-3. Select every Nth item from the starting point
-
-**Example:** Population of 1,000, sample of 25 → interval of 40. Random start: item 17. Select items 17, 57, 97, 137, ...
-
-**Advantages:** Even coverage across population, simple to execute
-**Disadvantages:** Periodic patterns in the population could bias results
-
-### Sample Size Guidance
-
-| Control Frequency | Expected Population | Low Risk Sample | Moderate Risk Sample | High Risk Sample |
-|------------------|--------------------|-----------------|--------------------|-----------------|
-| Annual | 1 | 1 | 1 | 1 |
-| Quarterly | 4 | 2 | 2 | 3 |
-| Monthly | 12 | 2 | 3 | 4 |
-| Weekly | 52 | 5 | 8 | 15 |
-| Daily | ~250 | 20 | 30 | 40 |
-| Per-transaction (small pop.) | < 250 | 20 | 30 | 40 |
-| Per-transaction (large pop.) | 250+ | 25 | 40 | 60 |
-
-**Factors increasing sample size:**
-- Higher inherent risk in the account/process
-- Control is the sole control addressing a significant risk (no redundancy)
-- Prior period control deficiency identified
-- New control (not tested in prior periods)
-- External auditor reliance on management testing
-
-## Testing Documentation Standards
-
-### Workpaper Requirements
-
-Every control test should be documented with:
-
-1. **Control identification:**
-   - Control number/ID
-   - Control description (what is done, by whom, how often)
-   - Control type (manual, automated, IT-dependent manual)
-   - Control frequency
-   - Risk and assertion addressed
-
-2. **Test design:**
-   - Test objective (what you are trying to determine)
-   - Test procedures (step-by-step instructions)
-   - Expected evidence (what you expect to see if the control is effective)
-   - Sample selection methodology and rationale
-
-3. **Test execution:**
-   - Population description and size
-   - Sample selection details (method, items selected)
-   - Results for each sample item (pass/fail with specific evidence examined)
-   - Exceptions noted with full description
-
-4. **Conclusion:**
-   - Overall assessment (effective / deficiency / significant deficiency / material weakness)
-   - Basis for conclusion
-   - Impact assessment for any exceptions
-   - Compensating controls considered (if applicable)
-
-5. **Sign-off:**
-   - Tester name and date
-   - Reviewer name and date
-
-### Evidence Standards
-
-**Sufficient evidence includes:**
-- Screenshots showing system-enforced controls
-- Signed/initialed approval documents
-- Email approvals with identifiable approver and date
-- System audit logs showing who performed the action and when
-- Re-performed calculations with matching results
-- Observation notes (with date, location, observer)
-
-**Insufficient evidence:**
-- Verbal confirmations alone (must be corroborated)
-- Undated documents
-- Evidence without identifiable performer/approver
-- Generic system reports without date/time stamps
-- "Per discussion with [name]" without corroborating documentation
-
-### Working Paper Organization
-
-Organize testing files by control area:
-
-```
-SOX Testing/
-├── [Year]/
-│   ├── Scoping and Risk Assessment/
-│   ├── Revenue Cycle/
-│   │   ├── Control Matrix
-│   │   ├── Walkthrough Documentation
-│   │   ├── Test Workpapers (one per control)
-│   │   └── Supporting Evidence
-│   ├── Procure to Pay/
-│   ├── Payroll/
-│   ├── Financial Close/
-│   ├── Treasury/
-│   ├── Fixed Assets/
-│   ├── IT General Controls/
-│   ├── Entity Level Controls/
-│   └── Summary and Conclusions/
-│       ├── Deficiency Evaluation
-│       └── Management Assessment
-```
-
-## Control Deficiency Classification
-
-### Deficiency
-
-A deficiency in internal control exists when the design or operation of a control does not allow management or employees, in the normal course of performing their assigned functions, to prevent or detect misstatements on a timely basis.
-
-**Evaluation factors:**
-- What is the likelihood that the control failure could result in a misstatement?
-- What is the magnitude of the potential misstatement?
-- Is there a compensating control that mitigates the deficiency?
-
-### Significant Deficiency
-
-A deficiency, or combination of deficiencies, that is less severe than a material weakness yet important enough to merit attention by those charged with governance.
-
-**Indicators:**
-- The deficiency could result in a misstatement that is more than inconsequential but less than material
-- There is more than a remote (but less than reasonably possible) likelihood of a material misstatement
-- The control is a key control and the deficiency is not fully mitigated by compensating controls
-- Combination of individually minor deficiencies that together represent a significant concern
-
-### Material Weakness
-
-A deficiency, or combination of deficiencies, such that there is a reasonable possibility that a material misstatement of the financial statements will not be prevented or detected on a timely basis.
-
-**Indicators:**
-- Identification of fraud by senior management (any magnitude)
-- Restatement of previously issued financial statements to correct a material error
-- Identification by the auditor of a material misstatement that would not have been detected by the company's controls
-- Ineffective oversight of financial reporting by the audit committee
-- Deficiency in a pervasive control (entity-level, IT general control) affecting multiple processes
-
-### Deficiency Aggregation
-
-Individual deficiencies that are not significant individually may be significant in combination:
-
-1. Identify all deficiencies in the same process or affecting the same assertion
-2. Evaluate whether the combined effect could result in a material misstatement
-3. Consider whether deficiencies in compensating controls exacerbate other deficiencies
-4. Document the aggregation analysis and conclusion
-
-### Remediation
-
-For each identified deficiency:
-
-1. **Root cause analysis:** Why did the control fail? (design gap, execution failure, staffing, training, system issue)
-2. **Remediation plan:** Specific actions to fix the control (redesign, additional training, system enhancement, added review)
-3. **Timeline:** Target date for remediation completion
-4. **Owner:** Person responsible for implementing the remediation
-5. **Validation:** How and when the remediated control will be re-tested to confirm effectiveness
-
-## Common Control Types
-
-### IT General Controls (ITGCs)
-
-Controls over the IT environment that support the reliable functioning of application controls and automated processes.
-
-**Access Controls:**
-- User access provisioning (new access requests require approval)
-- User access de-provisioning (terminated users removed timely)
-- Privileged access management (admin/superuser access restricted and monitored)
-- Periodic access reviews (user access recertified on a defined schedule)
-- Password policies (complexity, rotation, lockout)
-- Segregation of duties enforcement (conflicting access prevented)
-
-**Change Management:**
-- Change requests documented and approved before implementation
-- Changes tested in a non-production environment before promotion
-- Separation of development and production environments
-- Emergency change procedures (documented, approved post-implementation)
-- Change review and post-implementation validation
-
-**IT Operations:**
-- Batch job monitoring and exception handling
-- Backup and recovery procedures (regular backups, tested restores)
-- System availability and performance monitoring
-- Incident management and escalation procedures
-- Disaster recovery planning and testing
-
-### Manual Controls
-
-Controls performed by people using judgment, typically involving review and approval.
-
-**Examples:**
-- Management review of financial statements and key metrics
-- Supervisory approval of journal entries above a threshold
-- Three-way match verification (PO, receipt, invoice)
-- Account reconciliation preparation and review
-- Physical inventory observation and count
-- Vendor master data change approval
-- Customer credit approval
-
-**Key attributes to test:**
-- Was the control performed by the right person (proper authority)?
-- Was it performed timely (within the required timeframe)?
-- Is there evidence of the review (signature, initials, email, system log)?
-- Did the reviewer have sufficient information to perform an effective review?
-- Were exceptions identified and appropriately addressed?
-
-### Automated Controls
-
-Controls enforced by IT systems without human intervention.
-
-**Examples:**
-- System-enforced approval workflows (cannot proceed without required approvals)
-- Three-way match automation (system blocks payment if PO/receipt/invoice don't match)
-- Duplicate payment detection (system flags or blocks duplicate invoices)
-- Credit limit enforcement (system prevents orders exceeding credit limit)
-- Automated calculations (depreciation, amortization, interest, tax)
-- System-enforced segregation of duties (conflicting roles prevented)
-- Input validation controls (required fields, format checks, range checks)
-- Automated reconciliation matching
-
-**Testing approach:**
-- Test design: Confirm the system configuration enforces the control as intended
-- Test operating effectiveness: For automated controls, if the system configuration has not changed, one test of the control is typically sufficient for the period (supplemented by ITGC testing of change management)
-- Verify change management ITGCs are effective (if system changed, re-test the control)
-
-### IT-Dependent Manual Controls
-
-Manual controls that rely on the completeness and accuracy of system-generated information.
-
-**Examples:**
-- Management review of a system-generated exception report
-- Supervisor review of a system-generated aging report to assess reserves
-- Reconciliation using system-generated trial balance data
-- Approval of transactions identified by a system-generated workflow
-
-**Testing approach:**
-- Test the manual control (review, approval, follow-up on exceptions)
-- AND test the completeness and accuracy of the underlying report/data (IPE — Information Produced by the Entity)
-- IPE testing confirms the data the reviewer relied on was complete and accurate
-
-### Entity-Level Controls
-
-Broad controls that operate at the organizational level and affect multiple processes.
-
-**Examples:**
-- Tone at the top / code of conduct
-- Risk assessment process
-- Audit committee oversight of financial reporting
-- Internal audit function and activities
-- Fraud risk assessment and anti-fraud programs
-- Whistleblower/ethics hotline
-- Management monitoring of control effectiveness
-- Financial reporting competence (staffing, training, qualifications)
-- Period-end financial reporting process (close procedures, GAAP compliance reviews)
-
-**Significance:**
-- Entity-level controls can mitigate but typically cannot replace process-level controls
-- Ineffective entity-level controls (especially audit committee oversight and tone at the top) are strong indicators of a material weakness
-- Effective entity-level controls may reduce the extent of testing needed for process-level controls
+# Soporte de Auditoria - Normativa Argentina
+
+**Importante**: Esta habilidad facilita los flujos de trabajo de auditoria pero no proporciona asesoramiento legal ni de auditoria. Todos los papeles de trabajo y evaluaciones deben ser revisados por contadores publicos matriculados e idoneamente habilitados. La "significatividad" y "materialidad" son conceptos que evaluan en ultima instancia los auditores.
+
+Marco normativo: RT 37 FACPCE (Normas de Auditoria), Normas de Auditoria Aprobadas (NAA) de los CPCE provinciales, Normas de la CNV para entes que hacen oferta publica, e ISQC 1 / NIA para firmas que aplican normas internacionales.
+
+## Marco de Control Interno en Argentina
+
+A diferencia de la Ley Sarbanes-Oxley (SOX) de EE.UU., en Argentina no existe una norma equivalente de alcance universal obligatorio para el sector privado. Sin embargo, aplican los siguientes marcos segun el tipo de ente:
+
+**Para entes que cotizan en CNV (oferta publica):**
+- El auditor externo debe evaluar y reportar sobre el sistema de control interno en el informe de auditoria (RG CNV 622/2013 y ss.)
+- - Se requiere Informe sobre el Sistema de Control Interno (ISCI) para ciertos entes
+ 
+  - **Para entes en general:**
+  - - La RT 37 FACPCE establece que el auditor debe comprender el control interno relevante para la auditoria
+    - - El objetivo es evaluar el riesgo de error significativo y disenar procedimientos de auditoria apropiados
+      - - No es obligatorio emitir opinion sobre la efectividad del control interno (salvo CNV u otros reguladores)
+       
+        - **Para el sector publico:**
+        - - La Ley 24.156 (Administracion Financiera) establece el sistema de control interno (SIGEN) y externo (AGN)
+         
+          - ## Evaluacion del Riesgo de Auditoria
+         
+          - ### Componentes del Riesgo de Auditoria (RT 37)
+          - - **Riesgo inherente**: Susceptibilidad de una afirmacion a un error significativo, sin considerar controles
+            - - **Riesgo de control**: Probabilidad de que el sistema de control interno no prevenga o detecte el error
+              - - **Riesgo de deteccion**: Probabilidad de que los procedimientos del auditor no detecten el error existente
+               
+                - ### Identificacion de Cuentas Significativas
+               
+                - Una cuenta es significativa si existe mas que una posibilidad remota de que pueda contener un error que sea material individualmente o en conjunto.
+               
+                - **Factores cuantitativos:**
+                - - El saldo supera el umbral de materialidad (tipicamente 1-5% de un indicador de referencia: activo total, patrimonio neto, ingresos)
+                  - - El volumen de transacciones es alto, incrementando el riesgo de error
+                    - - La cuenta esta sujeta a estimaciones contables significativas
+                     
+                      - **Factores cualitativos:**
+                      - - La cuenta involucra contabilidad compleja (reconocimiento de ingresos, ajuste por inflacion RT 6, VPP, deterioro de activos)
+                        - - La cuenta es susceptible a fraude (efectivo, ingresos, transacciones con partes relacionadas)
+                          - - Ha tenido errores o ajustes de auditoria en periodos anteriores
+                            - - Involucra juicio significativo de la gerencia o estimaciones contables
+                             
+                              - ### Afirmaciones por Tipo de Cuenta
+                             
+                              - | Tipo de cuenta | Afirmaciones clave |
+                              - |---|---|
+                              - | Ingresos por ventas | Ocurrencia, Integridad, Exactitud, Corte |
+                              - | Creditos por ventas | Existencia, Valuacion (prevision incobrables), Derechos |
+                              - | Bienes de cambio | Existencia, Valuacion (costo vs. VNR), Integridad |
+                              - | Bienes de uso | Existencia, Valuacion (costo o revaluo menos amort.), Integridad, Derechos |
+                              - | Cuentas a pagar | Integridad, Exactitud, Existencia |
+                              - | Cargas fiscales (IVA, IG, IIBB) | Integridad, Exactitud, Valuacion |
+                              - | Pasivos laborales (SAC, vacaciones) | Integridad, Valuacion, Exactitud |
+                              - | Patrimonio neto | Integridad, Exactitud, Presentacion |
+                             
+                              - ## Tipos de Procedimientos de Auditoria
+                             
+                              - ### Pruebas de Controles (cuando el auditor decide confiar en ellos)
+                              - El auditor prueba si los controles operaron efectivamente durante el periodo bajo auditoria.
+                             
+                              - **Efectividad de diseno**: ¿El control esta correctamente disenado para prevenir o detectar un error significativo?
+                              - - Evaluado mediante recorridos (walkthrough): trazar una transaccion de punta a punta
+                                - - Confirmar que el control esta ubicado en el punto correcto del proceso
+                                  - - Confirmar que el control aborda el riesgo identificado
+                                   
+                                    - **Efectividad operativa**: ¿El control opero segun lo disenado durante el periodo?
+                                    - - Evaluado mediante pruebas (inspeccion, observacion, reejecucion, indagacion)
+                                      - - Requiere tamanos de muestra suficientes para sustentar la conclusion
+                                        - - Debe cubrir el periodo completo de confianza
+                                         
+                                          - ### Procedimientos Sustantivos
+                                          - Los procedimientos sustantivos son obligatorios para cuentas significativas, independientemente de los controles.
+                                         
+                                          - **Tipos:**
+                                          - - **Pruebas de detalle**: Confirmar saldos o transacciones individuales (confirmaciones, inspeccion de documentos, recalculo)
+                                            - - **Procedimientos analiticos sustantivos**: Comparar saldos o ratios con expectativas del auditor
+                                             
+                                              - **Combinacion tipica:**
+                                              - - Cuentas de bajo riesgo: principalmente procedimientos analiticos
+                                                - - Cuentas de alto riesgo: mayormente pruebas de detalle, complementadas con analiticos
+                                                 
+                                                  - ## Seleccion de Muestras
+                                                 
+                                                  - ### Seleccion Aleatoria
+                                                  - **Cuando usar**: Metodo por defecto para controles a nivel transaccion con poblaciones grandes.
+                                                 
+                                                  - **Metodo:**
+                                                  - 1. Definir la poblacion (todas las transacciones sujetas al control durante el periodo)
+                                                    2. 2. Numerar cada elemento secuencialmente
+                                                       3. 3. Usar generador de numeros aleatorios para seleccionar items
+                                                          4. 4. Asegurar que no hay sesgo en la seleccion
+                                                            
+                                                             5. **Ventajas**: Estadisticamente valido, defensible, sin sesgo de seleccion
+                                                            
+                                                             6. ### Seleccion Dirigida (Juicio del Auditor)
+                                                             7. **Cuando usar**: Complemento a la seleccion aleatoria para pruebas basadas en riesgo; metodo principal cuando la poblacion es pequena o muy variable.
+                                                            
+                                                             8. **Metodo:**
+                                                             9. - Seleccionar items con caracteristicas de riesgo especificas:
+                                                                -   - Importe elevado (por encima de un umbral definido)
+                                                                    -   - Transacciones inusuales o no estandar
+                                                                        -   - Transacciones de fin de periodo (riesgo de corte)
+                                                                            -   - Transacciones con partes relacionadas
+                                                                                -   - Transacciones manuales o que implican anulaciones de controles
+                                                                                    -   - Operaciones con proveedores o clientes nuevos
+                                                                                     
+                                                                                        - ### Guia de Tamano de Muestra
+                                                                                     
+                                                                                        - | Frecuencia del control | Poblacion | Muestra - Riesgo bajo | Muestra - Riesgo medio | Muestra - Riesgo alto |
+                                                                                        - |---|---|---|---|---|
+                                                                                        - | Anual | 1 | 1 | 1 | 1 |
+                                                                                        - | Trimestral | 4 | 2 | 2 | 3 |
+                                                                                        - | Mensual | 12 | 2 | 3 | 4 |
+                                                                                        - | Semanal | 52 | 5 | 8 | 15 |
+                                                                                        - | Diario | ~250 | 20 | 30 | 40 |
+                                                                                        - | Por transaccion (pob. chica) | menos de 250 | 20 | 30 | 40 |
+                                                                                        - | Por transaccion (pob. grande) | 250 o mas | 25 | 40 | 60 |
+                                                                                     
+                                                                                        - **Factores que incrementan el tamano de muestra:**
+                                                                                        - - Mayor riesgo inherente en la cuenta/proceso
+                                                                                          - - El control es el unico que atiende un riesgo significativo (sin controles compensatorios)
+                                                                                            - - Deficiencia de control identificada en periodos anteriores
+                                                                                              - - Control nuevo (no probado en periodos anteriores)
+                                                                                                - - El auditor externo se apoya en el trabajo de auditoria interna
+                                                                                                 
+                                                                                                  - ## Estandares de Documentacion de Papeles de Trabajo
+                                                                                                 
+                                                                                                  - ### Requisitos del Papel de Trabajo (RT 37 FACPCE)
+                                                                                                 
+                                                                                                  - Todo papel de trabajo de prueba de control debe documentar:
+                                                                                                 
+                                                                                                  - **Identificacion del control:**
+                                                                                                  - - Numero/ID del control
+                                                                                                    - - Descripcion del control (que se hace, quien lo hace, con que frecuencia)
+                                                                                                      - - Tipo de control (manual, automatizado, semi-automatizado)
+                                                                                                        - - Frecuencia del control
+                                                                                                          - - Riesgo y afirmacion que atiende
+                                                                                                           
+                                                                                                            - **Diseno de la prueba:**
+                                                                                                            - - Objetivo de la prueba (que se quiere determinar)
+                                                                                                              - - Procedimientos de prueba (instrucciones paso a paso)
+                                                                                                                - - Evidencia esperada (que se espera ver si el control es efectivo)
+                                                                                                                  - - Metodologia y razon de la seleccion de muestra
+                                                                                                                   
+                                                                                                                    - **Ejecucion de la prueba:**
+                                                                                                                    - - Descripcion y tamano de la poblacion
+                                                                                                                      - - Detalle de la seleccion de muestra (metodo, items seleccionados)
+                                                                                                                        - - Resultado para cada item de la muestra (satisfactorio/excepcion, con evidencia especifica examinada)
+                                                                                                                          - - Excepciones notadas con descripcion completa
+                                                                                                                           
+                                                                                                                            - **Conclusion:**
+                                                                                                                            - - Evaluacion general (efectivo / deficiencia / deficiencia significativa / debilidad de control)
+                                                                                                                              - - Base para la conclusion
+                                                                                                                                - - Evaluacion del impacto de cualquier excepcion
+                                                                                                                                  - - Controles compensatorios considerados (si aplica)
+                                                                                                                                   
+                                                                                                                                    - **Firma:**
+                                                                                                                                    - - Nombre del preparador y fecha
+                                                                                                                                      - - Nombre del revisor y fecha
+                                                                                                                                       
+                                                                                                                                        - ### Estandares de Evidencia Suficiente y Adecuada (RT 37)
+                                                                                                                                       
+                                                                                                                                        - **Evidencia suficiente y adecuada incluye:**
+                                                                                                                                        - - Capturas de pantalla mostrando controles implementados en el sistema
+                                                                                                                                          - - Documentos firmados/rubricados de aprobacion
+                                                                                                                                            - - Aprobaciones por correo electronico con aprobador identificable y fecha
+                                                                                                                                              - - Logs del sistema mostrando quien realizo la accion y cuando
+                                                                                                                                                - - Calculos reejecucionados con resultados coincidentes
+                                                                                                                                                  - - Notas de observacion (con fecha, lugar, observador)
+                                                                                                                                                    - - Confirmaciones de terceros (bancos, clientes, proveedores)
+                                                                                                                                                     
+                                                                                                                                                      - **Evidencia insuficiente:**
+                                                                                                                                                      - - Confirmaciones verbales solas (deben estar corroboradas)
+                                                                                                                                                        - - Documentos sin fecha
+                                                                                                                                                          - - Evidencia sin identificar al ejecutor/aprobador
+                                                                                                                                                            - - Reportes genericos del sistema sin sello de fecha/hora
+                                                                                                                                                              - - "Segun conversacion con [nombre]" sin documentacion de respaldo
+                                                                                                                                                               
+                                                                                                                                                                - ### Organizacion de los Papeles de Trabajo
+                                                                                                                                                               
+                                                                                                                                                                - ```
+                                                                                                                                                                  Archivo de Auditoria - [Razon social] - Ejercicio [anio/mes cierre]
+                                                                                                                                                                  ├── Legajo Permanente/
+                                                                                                                                                                  │   ├── Informacion del ente (estatuto, actas, autorizaciones)
+                                                                                                                                                                  │   ├── Contratos significativos
+                                                                                                                                                                  │   ├── Politicas contables
+                                                                                                                                                                  │   └── Estructura societaria
+                                                                                                                                                                  ├── Legajo Corriente/
+                                                                                                                                                                  │   ├── Planificacion y evaluacion de riesgo
+                                                                                                                                                                  │   ├── Materialidad (determinacion y aplicacion)
+                                                                                                                                                                  │   ├── Ingresos y cuentas a cobrar/
+                                                                                                                                                                  │   │   ├── Programa de auditoria
+                                                                                                                                                                  │   │   ├── Papeles de prueba (uno por procedimiento)
+                                                                                                                                                                  │   │   └── Evidencia de respaldo
+                                                                                                                                                                  │   ├── Compras y cuentas a pagar/
+                                                                                                                                                                  │   ├── Nomina y cargas sociales/
+                                                                                                                                                                  │   ├── Tesoreria/
+                                                                                                                                                                  │   ├── Bienes de uso/
+                                                                                                                                                                  │   ├── Impuestos (IVA, Ganancias, IIBB)/
+                                                                                                                                                                  │   ├── Ajuste por inflacion (RT 6)/
+                                                                                                                                                                  │   ├── Cierre contable y estados contables/
+                                                                                                                                                                  │   └── Resumen y conclusiones/
+                                                                                                                                                                  │       ├── Evaluacion de diferencias de auditoria
+                                                                                                                                                                  │       ├── Diferencias ajustadas y no ajustadas
+                                                                                                                                                                  │       └── Opinion del auditor (borrador)
+                                                                                                                                                                  ```
+                                                                                                                                                                  
+                                                                                                                                                                  ## Clasificacion de Deficiencias de Control
+                                                                                                                                                                  
+                                                                                                                                                                  ### Deficiencia de Control
+                                                                                                                                                                  Existe cuando el diseno u operacion de un control no permite a la gerencia o empleados, en el curso normal de sus funciones, prevenir o detectar errores oportunamente.
+                                                                                                                                                                  
+                                                                                                                                                                  **Factores de evaluacion:**
+                                                                                                                                                                  - Probabilidad de que la falla del control resulte en un error significativo
+                                                                                                                                                                  - - Magnitud del potencial error
+                                                                                                                                                                    - - Existencia de controles compensatorios que mitiguen la deficiencia
+                                                                                                                                                                     
+                                                                                                                                                                      - ### Deficiencia Significativa
+                                                                                                                                                                      - Una deficiencia, o combinacion de deficiencias, que merece atencion de quienes tienen a cargo el gobierno del ente (directorio, comision fiscalizadora, comite de auditoria).
+                                                                                                                                                                     
+                                                                                                                                                                      - **Indicadores:**
+                                                                                                                                                                      - - Podria resultar en un error superior a insignificante pero inferior a material
+                                                                                                                                                                        - - Mas que remota probabilidad de error material
+                                                                                                                                                                          - - El control es clave y la deficiencia no esta totalmente mitigada por controles compensatorios
+                                                                                                                                                                           
+                                                                                                                                                                            - ### Debilidad de Control Material
+                                                                                                                                                                            - Una deficiencia, o combinacion de deficiencias, tal que existe una posibilidad razonable de que un error material en los estados contables no sea prevenido o detectado oportunamente.
+                                                                                                                                                                           
+                                                                                                                                                                            - **Indicadores:**
+                                                                                                                                                                            - - Identificacion de fraude por parte de la gerencia (cualquier magnitud)
+                                                                                                                                                                              - - Reformulacion de estados contables de periodos anteriores para corregir un error material
+                                                                                                                                                                                - - Identificacion por el auditor de un error material que los controles de la empresa no hubieran detectado
+                                                                                                                                                                                  - - Supervision ineficaz por parte de la comision fiscalizadora o comite de auditoria
+                                                                                                                                                                                    - - Deficiencia en un control persuasivo (nivel entidad, TI general) que afecta multiples procesos
+                                                                                                                                                                                     
+                                                                                                                                                                                      - ### Agregacion de Deficiencias
+                                                                                                                                                                                      - Deficiencias individualmente no significativas pueden serlo en combinacion:
+                                                                                                                                                                                      - - Identificar todas las deficiencias en el mismo proceso o que afectan la misma afirmacion
+                                                                                                                                                                                        - - Evaluar si el efecto combinado podria resultar en un error material
+                                                                                                                                                                                          - - Considerar si deficiencias en controles compensatorios agravan otras deficiencias
+                                                                                                                                                                                            - - Documentar el analisis de agregacion y la conclusion
+                                                                                                                                                                                             
+                                                                                                                                                                                              - ### Remedicion
+                                                                                                                                                                                              - Para cada deficiencia identificada:
+                                                                                                                                                                                              - - **Analisis de causa raiz**: Por que fallo el control (falla de diseno, falla de ejecucion, personal, capacitacion, problema de sistema)
+                                                                                                                                                                                                - - **Plan de accion**: Acciones especificas para corregir el control (rediseno, capacitacion adicional, mejora del sistema, revision adicional)
+                                                                                                                                                                                                  - - **Fecha objetivo**: Cuando se completara la remedicion
+                                                                                                                                                                                                    - - **Responsable**: Quien implementara la remedicion
+                                                                                                                                                                                                      - - **Validacion**: Como y cuando se reprobara el control remediado para confirmar efectividad
+                                                                                                                                                                                                       
+                                                                                                                                                                                                        - ## Tipos de Controles
+                                                                                                                                                                                                       
+                                                                                                                                                                                                        - ### Controles de TI Generales (ITGC)
+                                                                                                                                                                                                        - Controles sobre el ambiente de TI que apoyan el funcionamiento confiable de los controles de aplicacion.
+                                                                                                                                                                                                       
+                                                                                                                                                                                                        - - **Controles de acceso**: Provision de accesos (requieren aprobacion), baja de accesos de usuarios desvinculados, gestion de accesos privilegiados, revision periodica de accesos, politicas de contrasenas
+                                                                                                                                                                                                          - - **Gestion de cambios**: Solicitudes documentadas y aprobadas antes de implementar, pruebas en ambiente no productivo, separacion entre desarrollo y produccion
+                                                                                                                                                                                                            - - **Operaciones de TI**: Monitoreo de procesos batch, procedimientos de backup y recuperacion, disponibilidad del sistema, gestion de incidentes
+                                                                                                                                                                                                             
+                                                                                                                                                                                                              - ### Controles Manuales
+                                                                                                                                                                                                              - Controles ejecutados por personas usando juicio.
+                                                                                                                                                                                                             
+                                                                                                                                                                                                              - **Ejemplos:**
+                                                                                                                                                                                                              - - Revision gerencial de estados contables e indicadores clave
+                                                                                                                                                                                                                - - Aprobacion supervisora de asientos contables por encima de un umbral
+                                                                                                                                                                                                                  - - Verificacion de conciliaciones de cuentas
+                                                                                                                                                                                                                    - - Aprobacion del libro de IVA y DDJJ antes de presentar a AFIP
+                                                                                                                                                                                                                      - - Revision de la liquidacion de sueldos antes del pago
+                                                                                                                                                                                                                        - - Aprobacion de pagos a proveedores (doble firma)
+                                                                                                                                                                                                                         
+                                                                                                                                                                                                                          - **Atributos clave a probar:**
+                                                                                                                                                                                                                          - - El control fue ejecutado por la persona correcta (autoridad apropiada)
+                                                                                                                                                                                                                            - - Se ejecuto oportunamente (dentro del plazo requerido)
+                                                                                                                                                                                                                              - - Existe evidencia de la revision (firma, iniciales, correo electronico, log del sistema)
+                                                                                                                                                                                                                                - - El revisor tuvo informacion suficiente para ejecutar una revision efectiva
+                                                                                                                                                                                                                                  - - Las excepciones fueron identificadas y apropiadamente tratadas
+                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                    - ### Controles Automatizados
+                                                                                                                                                                                                                                    - Controles aplicados por sistemas de TI sin intervencion humana.
+                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                    - **Ejemplos:**
+                                                                                                                                                                                                                                    - - Flujos de aprobacion del sistema (no se puede continuar sin las aprobaciones requeridas)
+                                                                                                                                                                                                                                      - - Deteccion de facturas duplicadas (el sistema bloquea o marca facturas duplicadas)
+                                                                                                                                                                                                                                        - - Limite de credito (el sistema bloquea pedidos que superan el limite)
+                                                                                                                                                                                                                                          - - Calculos automaticos (amortizacion, intereses, impuestos)
+                                                                                                                                                                                                                                            - - Segregacion de funciones implementada por el sistema
+                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                              - **Enfoque de prueba:**
+                                                                                                                                                                                                                                              - - Confirmar que la configuracion del sistema aplica el control segun lo disenado
+                                                                                                                                                                                                                                                - - Para controles automatizados sin cambios, una sola prueba puede ser suficiente para el periodo (complementada con pruebas de ITGC de gestion de cambios)
+                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                  - ### Controles Manuales Dependientes de TI
+                                                                                                                                                                                                                                                  - Controles manuales que se apoyan en la completitud y exactitud de informacion generada por el sistema.
+                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                  - **Ejemplos:**
+                                                                                                                                                                                                                                                  - - Revision gerencial de un reporte de excepciones generado por el sistema
+                                                                                                                                                                                                                                                    - - Supervision de un informe de antiguedad generado por el sistema para evaluar previsiones
+                                                                                                                                                                                                                                                      - - Conciliacion usando el balance de sumas y saldos generado por el sistema
+                                                                                                                                                                                                                                                        - - Aprobacion de transacciones identificadas por un flujo de trabajo del sistema
+                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                          - **Enfoque de prueba:**
+                                                                                                                                                                                                                                                          - - Probar el control manual (revision, aprobacion, seguimiento de excepciones)
+                                                                                                                                                                                                                                                            - - Y verificar la integridad y exactitud del reporte/datos subyacentes (IPE: Informacion Producida por el Ente)
+                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                              - ### Controles a Nivel Entidad
+                                                                                                                                                                                                                                                              - Controles generales que operan a nivel organizativo y afectan multiples procesos.
+                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                              - **Ejemplos:**
+                                                                                                                                                                                                                                                              - - Tono desde la cupula / codigo de conducta / politicas eticas
+                                                                                                                                                                                                                                                                - - Proceso de evaluacion de riesgos
+                                                                                                                                                                                                                                                                  - - Supervision del directorio / comision fiscalizadora / comite de auditoria
+                                                                                                                                                                                                                                                                    - - Funcion y actividades de auditoria interna
+                                                                                                                                                                                                                                                                      - - Evaluacion del riesgo de fraude
+                                                                                                                                                                                                                                                                        - - Canal de denuncias (linea etica)
+                                                                                                                                                                                                                                                                          - - Monitoreo de la efectividad del control por parte de la gerencia
+                                                                                                                                                                                                                                                                            - - Proceso de presentacion de informes financieros al cierre (procedimientos de cierre, revisiones de cumplimiento RT)
+                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                              - **Significado:**
+                                                                                                                                                                                                                                                                              - - Los controles a nivel entidad pueden mitigar, pero normalmente no pueden reemplazar, los controles a nivel proceso
+                                                                                                                                                                                                                                                                                - - Controles ineficaces a nivel entidad (especialmente supervision del directorio y tono de la alta gerencia) son indicadores solidos de una debilidad material
+                                                                                                                                                                                                                                                                                  - - Controles efectivos a nivel entidad pueden reducir la extension de las pruebas de controles a nivel proceso
+                                                                                                                                                                                                                                                                                    - 
