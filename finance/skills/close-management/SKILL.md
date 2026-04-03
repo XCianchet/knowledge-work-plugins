@@ -1,221 +1,198 @@
 ---
 name: close-management
-description: Manage the month-end close process with task sequencing, dependencies, and status tracking. Use when planning the close calendar, tracking close progress, identifying blockers, or sequencing close activities by day.
+description: Gestiona el proceso de cierre de mes con secuenciacion de tareas, dependencias y seguimiento del estado, incluyendo las obligaciones impositivas argentinas (vencimientos AFIP) y las tareas contables conforme a las RT FACPCE. Usado para planificar el calendario de cierre, hacer seguimiento del progreso e identificar obstaculos.
 user-invocable: false
 ---
 
-# Close Management
+# Gestion del Cierre Mensual - Argentina
 
-**Important**: This skill assists with close management workflows but does not provide financial advice. All close activities should be reviewed by qualified financial professionals.
+**Importante**: Esta habilidad facilita los flujos de trabajo de cierre pero no proporciona asesoramiento profesional. Todas las actividades deben ser revisadas por contadores publicos matriculados.
 
-Month-end close checklist, task sequencing and dependencies, status tracking, and common close activities organized by day.
+## Lista de Verificacion - Cierre de Fin de Mes
 
-## Month-End Close Checklist
+### Pre-cierre (ultimos 2-3 dias habiles del mes)
+- [ ] Enviar recordatorios de fechas limite a todos los responsables de area
+- [ ] - [ ] Confirmar procedimientos de cierre con Cuentas a Pagar, Cuentas a Cobrar, Liquidacion de Sueldos y Tesoreria
+- [ ] - [ ] Verificar que todos los subsistemas esten operativos (ERP, liquidacion de sueldos, homebanking)
+- [ ] - [ ] Realizar conciliacion bancaria preliminar (toda la actividad excepto el ultimo dia)
+- [ ] - [ ] Revisar ordenes de compra abiertas para necesidades de devengamiento
+- [ ] - [ ] Confirmar que el cronograma de liquidacion de sueldos se ajusta al plazo de cierre
+- [ ] - [ ] Verificar el calendario de vencimientos AFIP del mes siguiente (IVA, Ganancias, IIBB, F.931, etc.)
+- [ ] - [ ] Recopilar informacion sobre transacciones inusuales conocidas
 
-### Pre-Close (Last 2-3 Business Days of the Month)
+- [ ] ### Dia 1 del Cierre (T+1: Primer dia habil tras el cierre)
+- [ ] - [ ] Confirmar que todos los modulos del submayor completaron el procesamiento
+- [ ] - [ ] Realizar devengos de cuentas a pagar (bienes/servicios recibidos sin factura)
+- [ ] - [ ] Registrar asientos de liquidacion de sueldos y devengamiento de cargas sociales
+- [ ] - [ ] Registrar ingresos y egresos de caja/banco hasta el cierre del mes
+- [ ] - [ ] Registrar transacciones intercompany y confirmar con contrapartes
+- [ ] - [ ] Conciliacion bancaria completa con extracto bancario final
+- [ ] - [ ] Ejecutar amortizacion de bienes de uso desde el registro de activos
+- [ ] - [ ] Amortizacion de gastos anticipados y cargos diferidos
+- [ ] - [ ] Devengar SAC y vacaciones del periodo
 
-- [ ] Send close calendar and deadline reminders to all contributors
-- [ ] Confirm cut-off procedures with AP, AR, payroll, and treasury
-- [ ] Verify all sub-systems are processing normally (ERP, payroll, banking)
-- [ ] Complete preliminary bank reconciliation (all but last-day activity)
-- [ ] Review open purchase orders for potential accrual needs
-- [ ] Confirm payroll processing schedule aligns with close timeline
-- [ ] Collect information for any known unusual transactions
+- [ ] ### Dia 2 del Cierre (T+2)
+- [ ] - [ ] Completar asientos de reconocimiento de ingresos y ajustes de anticipos de clientes
+- [ ] - [ ] Registrar todos los devengos restantes
+- [ ] - [ ] Conciliacion del submayor de creditos por ventas
+- [ ] - [ ] Conciliacion del submayor de deudas comerciales
+- [ ] - [ ] Registrar ajustes de inventario (si corresponde)
+- [ ] - [ ] Revaluar saldos en moneda extranjera al TC del BCRA al cierre
+- [ ] - [ ] Iniciar conciliaciones de cuentas del balance
 
-### Close Day 1 (T+1: First Business Day After Month-End)
+- [ ] ### Dia 3 del Cierre (T+3)
+- [ ] - [ ] Completar todas las conciliaciones de balance
+- [ ] - [ ] Registrar asientos de ajuste identificados en conciliaciones
+- [ ] - [ ] Completar conciliacion y eliminacion intercompany
+- [ ] - [ ] Generar balance de sumas y saldos preliminar y estado de resultados
+- [ ] - [ ] Realizar analisis preliminar de variaciones (flujos)
+- [ ] - [ ] Investigar y resolver variaciones significativas
 
-- [ ] Confirm all sub-ledger modules have completed period-end processing
-- [ ] Run AP accruals for goods/services received but not invoiced
-- [ ] Post payroll entries and payroll accrual (if pay period straddles month-end)
-- [ ] Record cash receipts and disbursements through month-end
-- [ ] Post intercompany transactions and confirm with counterparties
-- [ ] Complete bank reconciliation with final bank statement
-- [ ] Run fixed asset depreciation
-- [ ] Post prepaid expense amortization
+- [ ] ### Dia 4 del Cierre (T+4)
+- [ ] - [ ] Registrar asiento de Impuesto a las Ganancias (corriente y diferido - RT 18)
+- [ ] - [ ] Preparar asiento de ajuste por inflacion (RT 6) si corresponde: calcular RECPAM y reexpresar rubros no monetarios por IPC-INDEC
+- [ ] - [ ] Verificar reserva legal y distribucion de resultados si corresponde
+- [ ] - [ ] Finalizar todos los asientos contables - cierre blando (soft close)
+- [ ] - [ ] Generar estados contables borrador (Resultado, Situacion Patrimonial, Flujo de Efectivo)
+- [ ] - [ ] Realizar analisis de variaciones detallado y preparar explicaciones
+- [ ] - [ ] Revision por parte de la gerencia de los estados contables e indicadores clave
 
-### Close Day 2 (T+2)
+- [ ] ### Dia 5 del Cierre (T+5)
+- [ ] - [ ] Registrar ajustes finales de la revision de gerencia
+- [ ] - [ ] Finalizar estados contables - cierre definitivo (hard close)
+- [ ] - [ ] Bloquear el periodo en el ERP / sistema contable
+- [ ] - [ ] Distribuir el paquete de informes financieros a los responsables
+- [ ] - [ ] Actualizar presupuestos/proyecciones con los resultados reales
+- [ ] - [ ] Verificar fechas de vencimiento de obligaciones impositivas del proximo periodo
+- [ ] - [ ] Realizar retrospectiva del cierre - identificar mejoras de proceso
 
-- [ ] Complete revenue recognition entries and deferred revenue adjustments
-- [ ] Post all remaining accrual journal entries
-- [ ] Complete AR subledger reconciliation
-- [ ] Complete AP subledger reconciliation
-- [ ] Record inventory adjustments (if applicable)
-- [ ] Post FX revaluation entries for foreign currency balances
-- [ ] Begin balance sheet account reconciliations
+- [ ] ## Calendario de Obligaciones Impositivas Mensuales (Argentina)
 
-### Close Day 3 (T+3)
+- [ ] Las siguientes obligaciones tienen vencimientos mensuales fijos; verificar calendario AFIP vigente por CUIT:
 
-- [ ] Complete all balance sheet reconciliations
-- [ ] Post any adjusting journal entries identified during reconciliation
-- [ ] Complete intercompany reconciliation and elimination entries
-- [ ] Run preliminary trial balance and income statement
-- [ ] Perform preliminary flux analysis on income statement
-- [ ] Investigate and resolve material variances
+- [ ] | Obligacion | Formulario | Periodicidad | Observacion |
+- [ ] |---|---|---|---|
+- [ ] | IVA | F.2002 / IVA web | Mensual | Vence segun terminacion CUIT, aprox. dia 18-22 |
+- [ ] | Cargas sociales (SIPA, PAMI, OS) | F.931 | Mensual | Vence dias 7-17 segun CUIT |
+- [ ] | Retenciones Ganancias (SICORE) | F.2118 / SICORE | Mensual | Vence segun quincena |
+- [ ] | Retenciones IIBB (SIRCAR / prov.) | Segun provincia | Mensual | Vencimientos por provincia |
+- [ ] | Impuesto a las Ganancias (anticipo) | F.713 | Mensual | 10 cuotas anuales |
+- [ ] | Bienes Personales (anticipo) | F.770 | Mensual | Segun calendario AFIP |
+- [ ] | Ingresos Brutos CM (Convenio Multilateral) | CM03 | Mensual | Vence dia 30 aprox. |
+- [ ] | Ingresos Brutos (jurisdiccion local) | Segun jurisdiccion | Mensual o bimestral | |
 
-### Close Day 4 (T+4)
+- [ ] ## Secuenciacion de Tareas y Dependencias
 
-- [ ] Post tax provision entries (income tax, sales tax, property tax)
-- [ ] Complete equity roll-forward (stock compensation, treasury stock)
-- [ ] Finalize all journal entries — soft close
-- [ ] Generate draft financial statements (P&L, BS, CF)
-- [ ] Perform detailed flux analysis and prepare variance explanations
-- [ ] Management review of financial statements and key metrics
+- [ ] ### NIVEL 1 (Sin dependencias - pueden iniciarse en T+1):
+- [ ] - Registracion de ingresos/egresos de caja y banco
+- [ ] - Obtencion del extracto bancario
+- [ ] - Liquidacion y asientos de sueldos
+- [ ] - Amortizacion de bienes de uso
+- [ ] - Amortizacion de gastos anticipados
+- [ ] - Preparacion de devengos de cuentas a pagar
+- [ ] - Registro de transacciones intercompany
 
-### Close Day 5 (T+5)
+- [ ] ### NIVEL 2 (Depende del Nivel 1):
+- [ ] - Conciliacion bancaria (necesita: asientos de caja/banco + extracto)
+- [ ] - Reconocimiento de ingresos (necesita: datos de facturacion/entrega finalizados)
+- [ ] - Conciliacion del submayor de creditos por ventas (necesita: todos los asientos de ingresos/cobros)
+- [ ] - Conciliacion del submayor de deudas comerciales (necesita: todos los asientos de compras/pagos)
+- [ ] - Revaluacion de moneda extranjera (necesita: todos los asientos en ME registrados)
+- [ ] - Devengos restantes (necesita: revision de toda la informacion fuente)
 
-- [ ] Post any final adjustments from management review
-- [ ] Finalize financial statements — hard close
-- [ ] Lock the period in the ERP/GL system
-- [ ] Distribute financial reporting package to stakeholders
-- [ ] Update forecasts/projections based on actual results
-- [ ] Conduct close retrospective — identify process improvements
+- [ ] ### NIVEL 3 (Depende del Nivel 2):
+- [ ] - Todas las conciliaciones de balance (necesita: todos los asientos registrados)
+- [ ] - Conciliacion intercompany (necesita: ambas entidades registradas)
+- [ ] - Asientos de ajuste de conciliaciones
+- [ ] - Balance de sumas y saldos preliminar
 
-## Task Sequencing and Dependencies
+- [ ] ### NIVEL 4 (Depende del Nivel 3):
+- [ ] - Impuesto a las Ganancias corriente y diferido (necesita: resultado antes de impuesto finalizado)
+- [ ] - Ajuste por inflacion RT 6 (necesita: balance de sumas y saldos completo e indice IPC del mes)
+- [ ] - Borrador de estados contables
+- [ ] - Analisis de variaciones preliminar
 
-### Dependency Map
+- [ ] ### NIVEL 5 (Depende del Nivel 4):
+- [ ] - Revision de gerencia
+- [ ] - Ajustes finales
+- [ ] - Cierre definitivo / bloqueo del periodo
+- [ ] - Paquete de informes
+- [ ] - Actualizacion de presupuestos
 
-Tasks are organized by what must complete before the next task can begin:
+- [ ] ## Seguimiento del Estado del Cierre
 
-```
-LEVEL 1 (No dependencies — can start immediately at T+1):
-├── Cash receipts/disbursements recording
-├── Bank statement retrieval
-├── Payroll processing/accrual
-├── Fixed asset depreciation run
-├── Prepaid amortization
-├── AP accrual preparation
-└── Intercompany transaction posting
+- [ ] | Tarea | Responsable | Fecha limite | Estado | Bloqueante | Notas |
+- [ ] |---|---|---|---|---|---|
+- [ ] | [Nombre de tarea] | [Persona/rol] | [Dia T+N] | No iniciado / En proceso / Completo / Bloqueado | [Si bloqueado: causa] | [Notas] |
 
-LEVEL 2 (Depends on Level 1 completion):
-├── Bank reconciliation (needs: cash entries + bank statement)
-├── Revenue recognition (needs: billing/delivery data finalized)
-├── AR subledger reconciliation (needs: all revenue/cash entries)
-├── AP subledger reconciliation (needs: all AP entries/accruals)
-├── FX revaluation (needs: all foreign currency entries posted)
-└── Remaining accrual JEs (needs: review of all source data)
+- [ ] **Definiciones de estado:**
+- [ ] - **No iniciado**: La tarea aun no comenzo (puede estar esperando dependencias)
+- [ ] - **En proceso**: La tarea se esta trabajando activamente
+- [ ] - **Completo**: La tarea termino y fue revisada/aprobada
+- [ ] - **Bloqueado**: No puede avanzar por dependencia, datos faltantes o problema
+- [ ] - **En riesgo**: En proceso pero puede no cumplir su fecha limite
 
-LEVEL 3 (Depends on Level 2 completion):
-├── All balance sheet reconciliations (needs: all JEs posted)
-├── Intercompany reconciliation (needs: both sides posted)
-├── Adjusting entries from reconciliations
-└── Preliminary trial balance
+- [ ] ## Indicadores del Proceso de Cierre
 
-LEVEL 4 (Depends on Level 3 completion):
-├── Tax provision (needs: pre-tax income finalized)
-├── Equity roll-forward
-├── Consolidation and eliminations
-├── Draft financial statements
-└── Preliminary flux analysis
+- [ ] | Indicador | Definicion | Objetivo |
+- [ ] |---|---|---|
+- [ ] | Duracion del cierre | Dias habiles desde fin de mes hasta cierre definitivo | Reducir periodo a periodo |
+- [ ] | Asientos post soft-close | Asientos registrados tras la revision de gerencia | Minimizar |
+- [ ] | Tareas con retraso | Tareas completadas despues de su fecha limite | Cero |
+- [ ] | Excepciones en conciliaciones | Partidas que requieren investigacion | Reducir |
+- [ ] | Presentaciones AFIP fuera de termino | Declaraciones juradas presentadas con mora | Cero (evitar multas e intereses) |
 
-LEVEL 5 (Depends on Level 4 completion):
-├── Management review
-├── Final adjustments
-├── Hard close / period lock
-├── Financial reporting package
-└── Forecast updates
-```
+- [ ] ## Cierre Acelerado (Objetivo 3 dias)
 
-### Critical Path
+- [ ] ### Dia T+1:
+- [ ] - Todos los asientos registrados (automatizados + manuales)
+- [ ] - Todas las conciliaciones de submayores
+- [ ] - Conciliacion bancaria
+- [ ] - Conciliacion intercompany
+- [ ] - Balance de sumas y saldos preliminar
 
-The critical path determines the minimum close duration. Typical critical path:
+- [ ] ### Dia T+2:
+- [ ] - Todas las conciliaciones de balance
+- [ ] - Impuesto a las Ganancias (corriente y diferido)
+- [ ] - Ajuste por inflacion RT 6 (si corresponde)
+- [ ] - Borrador de estados contables
+- [ ] - Analisis de variaciones
+- [ ] - Revision de gerencia
 
-```
-Cash/AP/AR entries → Subledger reconciliations → Balance sheet recs →
-  Tax provision → Draft financials → Management review → Hard close
-```
+- [ ] ### Dia T+3:
+- [ ] - Ajustes finales
+- [ ] - Cierre definitivo
+- [ ] - Paquete de informes
+- [ ] - Actualizacion de presupuestos
 
-To shorten the close:
-- Automate Level 1 entries (depreciation, prepaid amortization, standard accruals)
-- Pre-reconcile accounts during the month (continuous reconciliation)
-- Parallel-process independent reconciliations
-- Set clear deadlines with consequences for late submissions
-- Use standardized templates to reduce reconciliation prep time
+- [ ] **Prerequisitos para cierre de 3 dias:**
+- [ ] - Asientos recurrentes automatizados (amortizacion, devengos estandar)
+- [ ] - Conciliacion continua durante el mes
+- [ ] - Eliminacion intercompany automatizada
+- [ ] - Actividades de pre-cierre completadas antes del fin de mes
+- [ ] - Equipo empoderado con responsabilidades claras
+- [ ] - Integracion en tiempo real entre subsistemas
+- [ ] - Indice IPC-INDEC disponible rapidamente (generalmente primeros dias del mes siguiente)
 
-## Status Tracking and Reporting
+- [ ] ## Mejora Continua del Proceso
 
-### Close Status Dashboard
+- [ ] ### Problemas Comunes y Soluciones
 
-Track each close task with the following attributes:
+- [ ] | Cuello de botella | Causa raiz | Solucion |
+- [ ] |---|---|---|
+- [ ] | Devengos tardios | Esperando confirmacion de gasto del area | Implementar estimacion continua; establecer fechas limite |
+- [ ] | Asientos manuales lentos | Asientos recurrentes preparados manualmente | Automatizar en el ERP |
+- [ ] | Conciliaciones lentas | Comenzar desde cero cada mes | Implementar conciliacion continua |
+- [ ] | Retrasos intercompany | Esperando confirmacion de la contraparte | Automatizar conciliacion; establecer plazos mas estrictos |
+- [ ] | Ajuste por inflacion demorado | Indice IPC no disponible a tiempo | Prever con estimacion preliminar; ajustar al publicarse el indice definitivo |
+- [ ] | Cambios en revision de gerencia | Ajustes importantes descubiertos en revision | Mejorar proceso de revision preliminar |
+- [ ] | Documentacion faltante | Buscar documentacion de ultimo momento | Mantener documentacion durante todo el mes |
 
-| Task | Owner | Deadline | Status | Blocker | Notes |
-|------|-------|----------|--------|---------|-------|
-| [Task name] | [Person/role] | [Day T+N] | Not Started / In Progress / Complete / Blocked | [If blocked, what's blocking] | [Any notes] |
-
-### Status Definitions
-
-- **Not Started:** Task has not yet begun (may be waiting on dependencies)
-- **In Progress:** Task is actively being worked on
-- **Complete:** Task is finished and has been reviewed/approved
-- **Blocked:** Task cannot proceed due to a dependency, missing data, or issue
-- **At Risk:** Task is in progress but may not meet its deadline
-
-### Daily Close Status Meeting (Recommended)
-
-During the close period, hold a brief (15-minute) daily standup:
-
-1. **Review status board:** Walk through open tasks, flag any that are behind
-2. **Identify blockers:** Surface any issues preventing task completion
-3. **Reassign or escalate:** Adjust ownership or escalate blockers to resolve quickly
-4. **Update timeline:** If any tasks are at risk, assess impact on overall close timeline
-
-### Close Metrics to Track Over Time
-
-| Metric | Definition | Target |
-|--------|-----------|--------|
-| Close duration | Business days from period end to hard close | Reduce over time |
-| # of adjusting entries after soft close | Entries posted during management review | Minimize |
-| # of late tasks | Tasks completed after their deadline | Zero |
-| # of reconciliation exceptions | Reconciling items requiring investigation | Reduce over time |
-| # of restatements / corrections | Errors found after close | Zero |
-
-## Common Close Activities by Day
-
-### Typical 5-Day Close Calendar
-
-| Day | Key Activities | Responsible |
-|-----|---------------|-------------|
-| **T+1** | Cash entries, payroll, AP accruals, depreciation, prepaid amortization, intercompany posting | Staff accountants, payroll |
-| **T+2** | Revenue recognition, remaining accruals, subledger reconciliations (AR, AP, FA), FX revaluation | Revenue accountant, AP/AR, treasury |
-| **T+3** | Balance sheet reconciliations, intercompany reconciliation, eliminations, preliminary trial balance, preliminary flux | Accounting team, consolidation |
-| **T+4** | Tax provision, equity roll-forward, draft financial statements, detailed flux analysis, management review | Tax, controller, FP&A |
-| **T+5** | Final adjustments, hard close, period lock, reporting package distribution, forecast update, retrospective | Controller, FP&A, finance leadership |
-
-### Accelerated Close (3-Day Target)
-
-For organizations targeting a faster close:
-
-| Day | Key Activities |
-|-----|---------------|
-| **T+1** | All JEs posted (automated + manual), all subledger reconciliations, bank reconciliation, intercompany reconciliation, preliminary trial balance |
-| **T+2** | All balance sheet reconciliations, tax provision, consolidation, draft financial statements, flux analysis, management review |
-| **T+3** | Final adjustments, hard close, reporting package, forecast update |
-
-**Prerequisites for a 3-day close:**
-- Automated recurring journal entries (depreciation, amortization, standard accruals)
-- Continuous reconciliation during the month (not all at month-end)
-- Automated intercompany elimination
-- Pre-close activities completed before month-end (cut-off, accrual estimates)
-- Empowered team with clear ownership and minimal handoffs
-- Real-time or near-real-time sub-system integration
-
-## Close Process Improvement
-
-### Common Bottlenecks and Solutions
-
-| Bottleneck | Root Cause | Solution |
-|-----------|-----------|---------|
-| Late AP accruals | Waiting for department spend confirmation | Implement continuous accrual estimation; set cut-off deadlines |
-| Manual journal entries | Recurring entries prepared manually each month | Automate standard recurring entries in the ERP |
-| Slow reconciliations | Starting from scratch each month | Implement continuous/rolling reconciliation |
-| Intercompany delays | Waiting for counterparty confirmation | Automate intercompany matching; set stricter deadlines |
-| Management review changes | Large adjustments found during review | Improve preliminary review process; empower team to catch issues earlier |
-| Missing supporting documents | Scrambling for documentation at close | Maintain documentation throughout the month |
-
-### Close Retrospective Questions
-
-After each close, ask:
-1. What went well this close that we should continue?
-2. What took longer than expected and why?
-3. What blockers did we encounter and how can we prevent them?
-4. Were there any surprises in the financial results we should have caught earlier?
-5. What can we automate or streamline for next month?
+- [ ] ### Preguntas de Retrospectiva del Cierre
+- [ ] - ¿Que salio bien en este cierre que debemos continuar?
+- [ ] - ¿Que tardo mas de lo previsto y por que?
+- [ ] - ¿Que obstaculos encontramos y como podemos prevenirlos?
+- [ ] - ¿Hubo sorpresas en los resultados financieros que debiamos haber detectado antes?
+- [ ] - ¿Que podemos automatizar o simplificar para el proximo mes?
+- [ ] - ¿Los vencimientos impositivos del proximo mes estan identificados y hay responsable asignado?
+- [ ] 
