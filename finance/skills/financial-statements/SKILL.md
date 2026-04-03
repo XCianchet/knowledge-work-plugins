@@ -1,335 +1,296 @@
 ---
 name: financial-statements
-description: Generate financial statements (income statement, balance sheet, cash flow) with period-over-period comparison and variance analysis. Use when preparing a monthly or quarterly P&L, closing the books and need to flag material variances, comparing actuals to budget, building a financial summary for leadership review, or looking up GAAP presentation requirements and period-end adjustments.
-argument-hint: "<frequency> <period>"
+description: Genere estados contables (estado de resultados, estado de situacion patrimonial, estado de flujo de efectivo, estado de evolucion del patrimonio neto) con comparacion entre periodos y analisis de variaciones, conforme a las normas contables argentinas (RT FACPCE) o NIIF segun corresponda.
+argument-hint: <frecuencia> <periodo>
 ---
 
-# /financial-statements
-
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
-
-**Important**: This command assists with financial statement workflows but does not provide financial advice. All statements should be reviewed by qualified financial professionals before use in reporting or filings.
-
-Generate financial statements with period-over-period comparison and variance analysis. The workflow below walks through income statement generation; balance sheet and cash flow statement reference formats, GAAP presentation requirements (ASC 220/210/230), and common period-end adjustments are included as supporting reference material.
-
-## Usage
-
-```
-/financial-statements <period-type> <period>
-```
-
-### Arguments
-
-- `period-type` — The reporting period type:
-  - `monthly` — Single month P&L with prior month and prior year month comparison
-  - `quarterly` — Quarter P&L with prior quarter and prior year quarter comparison
-  - `annual` — Full year P&L with prior year comparison
-  - `ytd` — Year-to-date P&L with prior year YTD comparison
-- `period` — The period to report (e.g., `2024-12`, `2024-Q4`, `2024`)
-
-## Workflow
-
-### 1. Gather Financial Data
-
-If ~~erp or ~~data warehouse is connected:
-- Pull trial balance or income statement data for the specified period
-- Pull comparison period data (prior period, prior year, budget/forecast)
-- Pull account hierarchy and groupings for presentation
-
-If no data source is connected:
-> Connect ~~erp or ~~data warehouse to pull financial data automatically. You can also paste trial balance data, upload a spreadsheet, or provide income statement data for analysis.
-
-Prompt the user to provide:
-- Current period revenue and expense data (by account or category)
-- Comparison period data (prior period, prior year, and/or budget)
-- Any known adjustments or reclassifications
-
-### 2. Generate Income Statement
-
-Present in standard multi-column format:
-
-```
-INCOME STATEMENT
-Period: [Period description]
-(in thousands, unless otherwise noted)
-
-                              Current    Prior      Variance   Variance   Budget    Budget
-                              Period     Period     ($)        (%)        Amount    Var ($)
-                              --------   --------   --------   --------   --------  --------
-REVENUE
-  Product revenue             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Service revenue             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Other revenue               $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-                              --------   --------   --------              --------  --------
-TOTAL REVENUE                 $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-
-COST OF REVENUE
-  [Cost items]                $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-                              --------   --------   --------              --------  --------
-GROSS PROFIT                  $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Gross Margin                XX.X%      XX.X%
-
-OPERATING EXPENSES
-  Research & development      $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Sales & marketing           $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  General & administrative    $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-                              --------   --------   --------              --------  --------
-TOTAL OPERATING EXPENSES      $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-
-OPERATING INCOME (LOSS)       $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Operating Margin            XX.X%      XX.X%
-
-OTHER INCOME (EXPENSE)
-  Interest income             $XX,XXX    $XX,XXX    $X,XXX     X.X%
-  Interest expense           ($XX,XXX)  ($XX,XXX)   $X,XXX     X.X%
-  Other, net                  $XX,XXX    $XX,XXX    $X,XXX     X.X%
-                              --------   --------   --------
-TOTAL OTHER INCOME (EXPENSE)  $XX,XXX    $XX,XXX    $X,XXX     X.X%
-
-INCOME BEFORE TAXES           $XX,XXX    $XX,XXX    $X,XXX     X.X%
-  Income tax expense          $XX,XXX    $XX,XXX    $X,XXX     X.X%
-                              --------   --------   --------
-
-NET INCOME (LOSS)             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Net Margin                  XX.X%      XX.X%
-```
-
-### 3. Variance Analysis
-
-For each line item, calculate and flag material variances.
-
-#### Variance Calculation
-
-For each line item, calculate:
-- **Dollar variance:** Current period - Prior period (or current period - budget)
-- **Percentage variance:** (Current - Prior) / |Prior| x 100
-- **Basis point change:** For margins and ratios, express change in basis points (1 bp = 0.01%)
-
-#### Materiality Thresholds
-
-Define what constitutes a "material" variance requiring investigation. Common approaches:
-
-- **Fixed dollar threshold:** Variances exceeding a set dollar amount (e.g., $50K, $100K)
-- **Percentage threshold:** Variances exceeding a set percentage (e.g., 10%, 15%)
-- **Combined:** Either the dollar OR percentage threshold is exceeded
-- **Scaled:** Different thresholds for different line items based on their size and volatility
-
-*Example thresholds (adjust for your organization):*
-
-| Line Item Size | Dollar Threshold | Percentage Threshold |
-|---------------|-----------------|---------------------|
-| > $10M        | $500K           | 5%                  |
-| $1M - $10M    | $100K           | 10%                 |
-| < $1M         | $50K            | 15%                 |
-
-#### Variance Decomposition
-
-Break down total variance into component drivers:
-
-- **Volume/quantity effect:** Change in volume at prior period rates
-- **Rate/price effect:** Change in rate/price at current period volume
-- **Mix effect:** Shift in composition between items with different rates/margins
-- **New/discontinued items:** Items present in one period but not the other
-- **One-time/non-recurring items:** Items that are not expected to repeat
-- **Timing effect:** Items shifting between periods (not a true change in run rate)
-- **Currency effect:** Impact of FX rate changes on translated results
-
-#### Investigation and Narrative
-
-For each material variance:
-1. Quantify the variance ($ and %)
-2. Identify whether favorable or unfavorable
-3. Decompose into drivers using the categories above
-4. Provide a narrative explanation of the business reason
-5. Assess whether the variance is temporary or represents a trend change
-6. Note any actions required (further investigation, forecast update, process change)
-
-### 4. Key Metrics Summary
-
-```
-KEY METRICS
-                              Current    Prior      Change
-Revenue growth (%)                                  X.X%
-Gross margin (%)              XX.X%      XX.X%      X.X pp
-Operating margin (%)          XX.X%      XX.X%      X.X pp
-Net margin (%)                XX.X%      XX.X%      X.X pp
-OpEx as % of revenue          XX.X%      XX.X%      X.X pp
-Effective tax rate (%)        XX.X%      XX.X%      X.X pp
-```
-
-### 5. Material Variance Summary
-
-List all material variances requiring investigation:
-
-| Line Item | Variance ($) | Variance (%) | Direction | Preliminary Driver | Action |
-|-----------|-------------|-------------|-----------|-------------------|--------|
-| [Item]    | $X,XXX      | X.X%        | Unfav.    | [If known]        | Investigate |
-
-### 6. Output
-
-Provide:
-1. Formatted income statement with comparisons
-2. Key metrics summary
-3. Material variance listing with investigation flags
-4. Suggested follow-up questions for unexplained variances
-5. Offer to drill into any specific variance with `/flux`
-
-## GAAP Presentation Requirements
-
-### Income Statement (ASC 220 / IAS 1)
-
-- Present all items of income and expense recognized in a period
-- Classify expenses either by nature (materials, labor, depreciation) or by function (COGS, R&D, S&M, G&A) — function is more common for US companies
-- If classified by function, disclose depreciation, amortization, and employee benefit costs by nature in the notes
-- Present operating and non-operating items separately
-- Show income tax expense as a separate line
-- Extraordinary items are prohibited under both US GAAP and IFRS
-- Discontinued operations presented separately, net of tax
-
-**Common presentation considerations:**
-
-- **Revenue disaggregation:** ASC 606 requires disaggregation of revenue into categories that depict how the nature, amount, timing, and uncertainty of revenue are affected by economic factors
-- **Stock-based compensation:** Classify within the functional expense categories (R&D, S&M, G&A) with total SBC disclosed in notes
-- **Restructuring charges:** Present separately if material, or include in operating expenses with note disclosure
-- **Non-GAAP adjustments:** If presenting non-GAAP measures (common in earnings releases), clearly label and reconcile to GAAP
-
-### Balance Sheet (ASC 210 / IAS 1)
-
-- Distinguish between current and non-current assets and liabilities
-- Current: expected to be realized, consumed, or settled within 12 months (or the operating cycle if longer)
-- Present assets in order of liquidity (most liquid first) — standard US practice
-- Accounts receivable shown net of allowance for credit losses (ASC 326)
-- Property and equipment shown net of accumulated depreciation
-- Goodwill is not amortized — tested for impairment annually (ASC 350)
-- Leases: recognize right-of-use assets and lease liabilities for operating and finance leases (ASC 842)
-
-### Cash Flow Statement (ASC 230 / IAS 7)
-
-- Indirect method is most common (start with net income, adjust for non-cash items)
-- Direct method is permitted but rarely used (requires supplemental indirect reconciliation)
-- Interest paid and income taxes paid must be disclosed (either on the face or in notes)
-- Non-cash investing and financing activities disclosed separately (e.g., assets acquired under leases, stock issued for acquisitions)
-- Cash equivalents: short-term, highly liquid investments with original maturities of 3 months or less
-
-## Balance Sheet Reference Format
-
-```
-ASSETS
-Current Assets
-  Cash and cash equivalents
-  Short-term investments
-  Accounts receivable, net
-  Inventory
-  Prepaid expenses and other current assets
-Total Current Assets
-
-Non-Current Assets
-  Property and equipment, net
-  Operating lease right-of-use assets
-  Goodwill
-  Intangible assets, net
-  Long-term investments
-  Other non-current assets
-Total Non-Current Assets
-
-TOTAL ASSETS
-
-LIABILITIES AND STOCKHOLDERS' EQUITY
-Current Liabilities
-  Accounts payable
-  Accrued liabilities
-  Deferred revenue, current portion
-  Current portion of long-term debt
-  Operating lease liabilities, current portion
-  Other current liabilities
-Total Current Liabilities
-
-Non-Current Liabilities
-  Long-term debt
-  Deferred revenue, non-current
-  Operating lease liabilities, non-current
-  Other non-current liabilities
-Total Non-Current Liabilities
-
-Total Liabilities
-
-Stockholders' Equity
-  Common stock
-  Additional paid-in capital
-  Retained earnings (accumulated deficit)
-  Accumulated other comprehensive income (loss)
-  Treasury stock
-Total Stockholders' Equity
-
-TOTAL LIABILITIES AND STOCKHOLDERS' EQUITY
-```
-
-## Cash Flow Statement Reference Format (Indirect Method)
-
-```
-CASH FLOWS FROM OPERATING ACTIVITIES
-Net income (loss)
-Adjustments to reconcile net income to net cash from operations:
-  Depreciation and amortization
-  Stock-based compensation
-  Amortization of debt issuance costs
-  Deferred income taxes
-  Loss (gain) on disposal of assets
-  Impairment charges
-  Other non-cash items
-Changes in operating assets and liabilities:
-  Accounts receivable
-  Inventory
-  Prepaid expenses and other assets
-  Accounts payable
-  Accrued liabilities
-  Deferred revenue
-  Other liabilities
-Net Cash Provided by (Used in) Operating Activities
-
-CASH FLOWS FROM INVESTING ACTIVITIES
-  Purchases of property and equipment
-  Purchases of investments
-  Proceeds from sale/maturity of investments
-  Acquisitions, net of cash acquired
-  Other investing activities
-Net Cash Provided by (Used in) Investing Activities
-
-CASH FLOWS FROM FINANCING ACTIVITIES
-  Proceeds from issuance of debt
-  Repayment of debt
-  Proceeds from issuance of common stock
-  Repurchases of common stock
-  Dividends paid
-  Payment of debt issuance costs
-  Other financing activities
-Net Cash Provided by (Used in) Financing Activities
-
-Effect of exchange rate changes on cash
-
-Net Increase (Decrease) in Cash and Cash Equivalents
-Cash and cash equivalents, beginning of period
-Cash and cash equivalents, end of period
-```
-
-## Common Adjustments and Reclassifications
-
-### Period-End Adjustments
-
-1. **Accruals:** Record expenses incurred but not yet paid (AP accruals, payroll accruals, interest accruals)
-2. **Deferrals:** Adjust prepaid expenses, deferred revenue, and deferred costs for the period
-3. **Depreciation and amortization:** Book periodic depreciation/amortization from fixed asset and intangible schedules
-4. **Bad debt provision:** Adjust allowance for credit losses based on aging analysis and historical loss rates
-5. **Inventory adjustments:** Record write-downs for obsolete, slow-moving, or impaired inventory
-6. **FX revaluation:** Revalue foreign-currency-denominated monetary assets and liabilities at period-end rates
-7. **Tax provision:** Record current and deferred income tax expense
-8. **Fair value adjustments:** Mark-to-market investments, derivatives, and other fair-value items
-
-### Reclassifications
-
-1. **Current/non-current reclassification:** Reclassify long-term debt maturing within 12 months to current
-2. **Contra account netting:** Net allowances against gross receivables, accumulated depreciation against gross assets
-3. **Intercompany elimination:** Eliminate intercompany balances and transactions in consolidation
-4. **Discontinued operations:** Reclassify results of discontinued operations to a separate line item
-5. **Equity method adjustments:** Record share of investee income/loss for equity method investments
-6. **Segment reclassifications:** Ensure transactions are properly classified by operating segment
+# Estados Contables - Normativa Argentina
+
+**Importante**: Esta habilidad facilita la preparacion de estados contables pero no proporciona asesoramiento profesional. Todos los estados contables deben ser revisados por contadores publicos matriculados antes de su uso. Marco normativo: RT 8, 9, 11, 16, 17, 26 FACPCE, y NIIF/NIC para entes que las adoptan.
+
+Genera estados contables con comparacion entre periodos y analisis de variaciones. El flujo de trabajo cubre el estado de resultados; se incluyen formatos de referencia del estado de situacion patrimonial, estado de flujo de efectivo y estado de evolucion del patrimonio neto, conforme a la normativa argentina.
+
+## Uso
+
+`/financial-statements <tipo-periodo> <periodo>`
+
+**Tipos de periodo:**
+- `mensual` - Estado de resultados mensual con comparacion mes anterior y mismo mes anio anterior
+- - `trimestral` - Estado de resultados trimestral con comparacion trimestre anterior y anio anterior
+  - - `anual` - Estado contable anual completo con comparacion anio anterior
+    - - `acumulado` - Estado acumulado del ejercicio con comparacion anio anterior
+     
+      - ## Flujo de Trabajo
+     
+      - ### 1. Recopilacion de Datos
+     
+      - Si el ERP o sistema contable esta conectado:
+      - - Extraer datos del balance de sumas y saldos para el periodo
+        - - Obtener datos del periodo de comparacion (periodo anterior, mismo periodo anio anterior, presupuesto)
+          - - Extraer la estructura del plan de cuentas para la presentacion
+           
+            - Si no hay fuente de datos conectada:
+            - - Solicitar al usuario el balance de sumas y saldos del periodo actual y de comparacion
+              - - Solicitar ajustes y reclasificaciones conocidas
+               
+                - ### 2. Estado de Resultados (RT 8 / RT 9)
+               
+                - Presentar en formato multicolumna estandar:
+               
+                - ```
+                  ESTADO DE RESULTADOS
+                  Periodo: [descripcion del periodo]
+                  (en miles de pesos, salvo indicacion contraria)
+
+                                            Periodo    Periodo    Variacion  Variacion   Presup.   Var.
+                                            Actual     Anterior      ($)        (%)       Anual    Pres.
+                  INGRESOS POR VENTAS
+                    Ventas de bienes        $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+                    Ingresos por servicios  $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+                    Otros ingresos          $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+                  TOTAL INGRESOS            $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+
+                  COSTO DE VENTAS           $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+
+                  RESULTADO BRUTO           $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+                    Margen bruto %          XX.X%      XX.X%
+
+                  GASTOS DE ADMINISTRACION  $XX.XXX    $XX.XXX    $X.XXX      X.X%
+                  GASTOS DE COMERCIALIZACION $XX.XXX   $XX.XXX    $X.XXX      X.X%
+                  TOTAL GASTOS OPERATIVOS   $XX.XXX    $XX.XXX    $X.XXX      X.X%
+
+                  RESULTADO OPERATIVO (EBIT) $XX.XXX   $XX.XXX    $X.XXX      X.X%
+                    Margen operativo %      XX.X%      XX.X%
+
+                  RESULTADOS FINANCIEROS Y POR TENENCIA
+                    Intereses ganados       $XX.XXX    $XX.XXX    $X.XXX      X.X%
+                    Intereses perdidos      ($XX.XXX)  ($XX.XXX)  $X.XXX      X.X%
+                    Diferencia de cambio    $XX.XXX    $XX.XXX    $X.XXX      X.X%
+                    Resultado por tenencia  $XX.XXX    $XX.XXX    $X.XXX      X.X%
+                    RECPAM (Result. por exp.
+                    al cambio en poder adq.) $XX.XXX   $XX.XXX    $X.XXX      X.X%
+                  TOTAL RES. FINANCIEROS    $XX.XXX    $XX.XXX    $X.XXX      X.X%
+
+                  RESULTADO ANTES DE IMPUESTO $XX.XXX  $XX.XXX    $X.XXX      X.X%
+
+                  Impuesto a las Ganancias  ($XX.XXX)  ($XX.XXX)  $X.XXX      X.X%
+                    Corriente               ($XX.XXX)
+                    Diferido                ($XX.XXX)
+
+                  RESULTADO DEL EJERCICIO   $XX.XXX    $XX.XXX    $X.XXX      X.X%      $XX.XXX   $X.XXX
+                    Margen neto %           XX.X%      XX.X%
+                  ```
+
+                  ### 3. Analisis de Variaciones
+
+                  Para cada linea, calcular y marcar variaciones significativas:
+
+                  **Calculo de variaciones:**
+                  - Variacion monetaria: Periodo actual - Periodo anterior (o actual - presupuesto)
+                  - - Variacion porcentual: (Actual - Anterior) / |Anterior| x 100
+                    - - Cambio en puntos basicos para margenes y ratios (1 pb = 0,01%)
+                     
+                      - **Umbrales de materialidad (ajustar por organizacion):**
+                     
+                      - | Tamano de la partida | Umbral monetario | Umbral porcentual |
+                      - |---|---|---|
+                      - | Mayor a $10M | $500K | 5% |
+                      - | $1M a $10M | $100K | 10% |
+                      - | Menor a $1M | $50K | 15% |
+                     
+                      - *Nota: En contexto inflacionario, comparar periodos en moneda homogenea (reexpresados por IPC-INDEC conforme RT 6)*
+                     
+                      - **Descomposicion de variaciones:**
+                      - - Efecto volumen/cantidad: Cambio en volumen a precios del periodo anterior
+                        - - Efecto precio/tarifa: Cambio en precio al volumen del periodo actual
+                          - - Efecto mezcla: Cambio en la composicion del mix de productos/servicios
+                            - - Partidas no recurrentes: Items que no se espera que se repitan
+                              - - Efecto inflacion: Impacto del ajuste por IPC en la comparacion interperiodos
+                                - - Efecto tipo de cambio: Impacto de variaciones del TC en operaciones en moneda extranjera
+                                 
+                                  - ### 4. Indicadores Clave
+                                 
+                                  - ```
+                                    INDICADORES CLAVE           Actual    Anterior   Variacion
+                                    Crecimiento de ventas (%)   X.X%
+                                    Margen bruto (%)            XX.X%     XX.X%      X.X pp
+                                    Margen operativo (%)        XX.X%     XX.X%      X.X pp
+                                    Margen neto (%)             XX.X%     XX.X%      X.X pp
+                                    Gastos adm. s/ventas (%)    XX.X%     XX.X%      X.X pp
+                                    Gastos comerc. s/ventas (%) XX.X%     XX.X%      X.X pp
+                                    Tasa efectiva IG (%)        XX.X%     XX.X%      X.X pp
+                                    RECPAM s/resultado (%)      XX.X%     XX.X%      X.X pp
+                                    ```
+
+                                    ### 5. Resumen de Variaciones Significativas
+
+                                    | Partida | Variacion ($) | Variacion (%) | Tipo | Causa preliminar | Accion |
+                                    |---|---|---|---|---|---|
+                                    | [Partida] | $X.XXX | X.X% | Desfav. | [si se conoce] | Investigar |
+
+                                    ## Requisitos de Presentacion - Normativa Argentina
+
+                                    ### Estado de Resultados (RT 8 / RT 9)
+
+                                    - Clasificar gastos por funcion (administracion, comercializacion, produccion) — mas comun en Argentina — o por naturaleza
+                                    - - Si se clasifican por funcion: revelar en notas la depreciacion, amortizacion y cargas sociales por naturaleza
+                                      - - Presentar separadamente los resultados financieros y por tenencia
+                                        - - Incluir el RECPAM (Resultado por Exposicion a Cambios en el Poder Adquisitivo de la Moneda) en contexto de ajuste por inflacion (RT 6)
+                                          - - El Impuesto a las Ganancias se presenta como linea separada, discriminando corriente y diferido (RT 18)
+                                            - - Las operaciones discontinuadas se presentan separadamente, netas de impuesto
+                                              - - Para entes que aplican NIIF: clasificar otros resultados integrales (OCI) separadamente del resultado del periodo (NIC 1)
+                                               
+                                                - ### Estado de Situacion Patrimonial (RT 8 / RT 9)
+                                               
+                                                - - Clasificar activos y pasivos en corrientes y no corrientes (criterio: realizacion/vencimiento dentro de los 12 meses o del ciclo operativo si es mayor)
+                                                  - - Presentar activos en orden decreciente de liquidez
+                                                    - - Cuentas a cobrar: presentar netas de la prevision para deudores incobrables (RT 17, seccion 4.4)
+                                                      - - Bienes de uso: presentar netos de amortizacion acumulada
+                                                        - - En contexto RT 6: todos los rubros en moneda homogenea (fecha de cierre)
+                                                          - - Inversiones en otras sociedades: metodo del valor patrimonial proporcional (RT 21) para significativas; costo o valor razonable para las demas
+                                                           
+                                                            - **Estructura del Estado de Situacion Patrimonial:**
+                                                           
+                                                            - ```
+                                                              ACTIVO
+                                                                ACTIVO CORRIENTE
+                                                                  Caja y bancos
+                                                                  Inversiones corrientes
+                                                                  Creditos por ventas (neto de prevision)
+                                                                  Otros creditos
+                                                                  Bienes de cambio
+                                                                  Activos por impuesto diferido corriente
+                                                                  Otros activos corrientes
+                                                                TOTAL ACTIVO CORRIENTE
+
+                                                                ACTIVO NO CORRIENTE
+                                                                  Creditos por ventas no corrientes
+                                                                  Otros creditos no corrientes
+                                                                  Inversiones permanentes (VPP)
+                                                                  Bienes de uso (neto de amort. acumulada)
+                                                                  Activos intangibles (neto de amort. acumulada)
+                                                                  Llave de negocio
+                                                                  Activos por impuesto diferido no corriente
+                                                                  Otros activos no corrientes
+                                                                TOTAL ACTIVO NO CORRIENTE
+
+                                                              TOTAL ACTIVO
+
+                                                              PASIVO
+                                                                PASIVO CORRIENTE
+                                                                  Deudas comerciales
+                                                                  Deudas bancarias y financieras corrientes
+                                                                  Remuneraciones y cargas sociales
+                                                                  Cargas fiscales (IVA, Ganancias, IIBB, etc.)
+                                                                  Anticipos de clientes
+                                                                  Otros pasivos corrientes
+                                                                TOTAL PASIVO CORRIENTE
+
+                                                                PASIVO NO CORRIENTE
+                                                                  Deudas bancarias y financieras no corrientes
+                                                                  Previsiones (para contingencias, indemnizaciones)
+                                                                  Pasivos por impuesto diferido
+                                                                  Otros pasivos no corrientes
+                                                                TOTAL PASIVO NO CORRIENTE
+
+                                                              TOTAL PASIVO
+
+                                                              PATRIMONIO NETO
+                                                                  Capital social
+                                                                  Ajuste del capital (RT 6)
+                                                                  Aportes irrevocables a cuenta de futuras suscripciones
+                                                                  Prima de emision
+                                                                  Reserva legal
+                                                                  Otras reservas
+                                                                  Resultados no asignados
+                                                                  Resultado del ejercicio
+                                                              TOTAL PATRIMONIO NETO
+
+                                                              TOTAL PASIVO Y PATRIMONIO NETO
+                                                              ```
+
+                                                              ### Estado de Flujo de Efectivo (RT 8 / RT 11)
+
+                                                              - El metodo indirecto es el mas comun (partir del resultado del ejercicio, ajustar por partidas que no generan/usan efectivo)
+                                                              - - El metodo directo esta permitido
+                                                                - - Revelar intereses pagados e impuestos pagados (en el cuerpo o en notas)
+                                                                  - - Las actividades no monetarias significativas se revelan en notas (por ejemplo, bienes incorporados por leasing, canjes)
+                                                                    - - Efectivo y equivalentes: efectivo en caja y bancos mas inversiones de alta liquidez con vencimiento original hasta 3 meses
+                                                                     
+                                                                      - **Estructura del Estado de Flujo de Efectivo (Metodo Indirecto):**
+                                                                     
+                                                                      - ```
+                                                                        FLUJOS DE EFECTIVO DE ACTIVIDADES OPERATIVAS
+                                                                          Resultado del ejercicio
+                                                                          Ajustes por partidas que no afectan el efectivo:
+                                                                            Amortizacion de bienes de uso
+                                                                            Amortizacion de intangibles
+                                                                            RECPAM (si se aplica RT 6)
+                                                                            Variacion de previsiones
+                                                                            Resultado por venta de bienes de uso
+                                                                            Impuesto a las Ganancias diferido
+                                                                            Resultado del VPP en inversiones permanentes
+                                                                          Cambios en activos y pasivos operativos:
+                                                                            (Aumento) disminucion de creditos por ventas
+                                                                            (Aumento) disminucion de bienes de cambio
+                                                                            (Aumento) disminucion de otros creditos
+                                                                            Aumento (disminucion) de deudas comerciales
+                                                                            Aumento (disminucion) de cargas fiscales
+                                                                            Aumento (disminucion) de remuneraciones y CS
+                                                                            Aumento (disminucion) de anticipos de clientes
+                                                                        FLUJO NETO DE ACTIVIDADES OPERATIVAS
+
+                                                                        FLUJOS DE EFECTIVO DE ACTIVIDADES DE INVERSION
+                                                                          Adquisicion de bienes de uso
+                                                                          Cobros por venta de bienes de uso
+                                                                          Adquisicion de activos intangibles
+                                                                          Adquisicion de inversiones permanentes
+                                                                          Cobros por venta de inversiones permanentes
+                                                                          Cobros de dividendos
+                                                                        FLUJO NETO DE ACTIVIDADES DE INVERSION
+
+                                                                        FLUJOS DE EFECTIVO DE ACTIVIDADES DE FINANCIACION
+                                                                          Obtencion de prestamos bancarios
+                                                                          Cancelacion de prestamos bancarios
+                                                                          Aportes de capital
+                                                                          Pago de dividendos
+                                                                          Recompra de acciones propias
+                                                                        FLUJO NETO DE ACTIVIDADES DE FINANCIACION
+
+                                                                        Efecto de las variaciones en el tipo de cambio sobre el efectivo
+                                                                        VARIACION NETA EN EL EFECTIVO Y EQUIVALENTES
+                                                                        Efectivo al inicio del periodo
+                                                                        Efectivo al cierre del periodo
+                                                                        ```
+
+                                                                        ### Estado de Evolucion del Patrimonio Neto (RT 8)
+
+                                                                        Presentar la variacion de cada rubro del PN durante el ejercicio:
+                                                                        - Saldo al inicio del ejercicio
+                                                                        - - Ajuste por inflacion (RT 6) si corresponde
+                                                                          - - Dividendos distribuidos
+                                                                            - - Absorcion de resultados no asignados
+                                                                              - - Constituciones y desafectaciones de reservas
+                                                                                - - Resultado del ejercicio
+                                                                                  - - Otros resultados integrales (si aplica NIIF)
+                                                                                    - - Saldo al cierre del ejercicio
+                                                                                     
+                                                                                      - ## Ajustes y Reclasificaciones de Cierre
+                                                                                     
+                                                                                      - **Ajustes tipicos:**
+                                                                                      - - Devengos: registrar gastos incurridos no pagados (cargas sociales, intereses, honorarios)
+                                                                                        - - Diferimientos: ajustar gastos anticipados y anticipos de clientes por el periodo
+                                                                                          - - Depreciacion y amortizacion: correr desde el registro de bienes de uso
+                                                                                            - - Prevision para deudores incobrables: ajustar segun analisis de antiguedad y experiencia historica
+                                                                                              - - Ajuste de inventarios: registrar mermas, obsolescencia o bienes a valor de reposicion si es menor al costo
+                                                                                                - - Revaluacion de moneda extranjera: convertir saldos en ME al TC del BCRA al cierre (RT 17, seccion 4.7)
+                                                                                                  - - Impuesto a las Ganancias: registrar gasto corriente y diferido (RT 18)
+                                                                                                    - - Ajuste por inflacion (RT 6): reexpresar todos los rubros no monetarios por indice IPC-INDEC si corresponde
+                                                                                                     
+                                                                                                      - **Reclasificaciones tipicas:**
+                                                                                                      - - Corriente / no corriente: reclasificar deudas con vencimiento proximo a corriente
+                                                                                                        - - Neteamiento de cuentas complementarias: amortizacion acumulada, prevision para incobrables
+                                                                                                          - - Eliminacion de operaciones intercompany en consolidacion
+                                                                                                            - - Operaciones discontinuadas: reclasificar como linea separada en el estado de resultados
+                                                                                                              - - Metodo del VPP: actualizar inversiones en sociedades controladas/vinculadas (RT 21)
+                                                                                                                - 
